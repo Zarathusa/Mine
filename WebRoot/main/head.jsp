@@ -18,6 +18,12 @@
     <script src="${path}/boot/js/jquery-3.3.1.min.js"></script>
     <script src="${path}/boot/js/bootstrap.min.js"></script>
     <script src="${path}/boot/js/bootstrapValidator.min.js"></script>
+    <style type="text/css">
+    	.navbar-brand {
+		    font-size: 25px;
+		    line-height: 20px;
+		}
+    </style>
 </head>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -30,7 +36,7 @@
             <li><a >欢迎: <span class="text-primary">小黑 </span></a></li>
             <li><a href="#">退出登录 <span class="glyphicon glyphicon-log-out"></span></a></li>
         </ul>
-        <form action="" method="post" class="navbar-form navbar-right" >
+        <form action="<c:url value='/mineInfo/showAll'/>" method="post" class="navbar-form navbar-right" >
 			  <div class="form-group">
 			    <input type="text" name="projectName" class="form-control" placeholder="请输入项目名">
 			  </div>

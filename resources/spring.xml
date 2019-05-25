@@ -34,6 +34,17 @@
 		<property name="dataSource" ref="dataSource"/>
 		<!-- <property name="mapperLocations" value="classpath:com/xpf/mapper/*Mapper.xml"/> -->
 		<property name="typeAliasesPackage" value="com.xpf.entity"/>
+
+		<!-- 配置分页插件 -->
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties">
+						<value> dialect=mysql</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
 	
 	<!-- 创建DAO实现类 -->
