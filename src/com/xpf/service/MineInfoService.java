@@ -11,4 +11,8 @@ public interface MineInfoService {
 	void deleteProject(Integer id);
 	
 	void addProject(MineInfo mineInfo);
+	
+	MineInfo queryOne(Integer id);
+	
+	void updateMineInfo(MineInfo mineInfo);
 }

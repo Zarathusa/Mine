@@ -18,6 +18,7 @@
     <script src="${path}/boot/js/jquery-3.3.1.min.js"></script>
     <script src="${path}/boot/js/bootstrap.min.js"></script>
     <script src="${path}/boot/js/bootstrapValidator.min.js"></script>
+    <script src="${path}/boot/js/jquery.media.js"></script>
     <style type="text/css">
     	.navbar-brand {
 		    font-size: 25px;

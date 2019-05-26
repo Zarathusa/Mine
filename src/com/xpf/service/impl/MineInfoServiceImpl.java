@@ -2,7 +2,6 @@ package com.xpf.service.impl;
 
 import java.util.List;
 
-import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +50,18 @@ public class MineInfoServiceImpl implements MineInfoService{
 	@Override
 	public void addProject(MineInfo mineInfo) {
 		mineInfoMapper.insert(mineInfo);
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.SUPPORTS,readOnly=true)
+	public MineInfo queryOne(Integer id) {
+		MineInfo mineInfo = mineInfoMapper.selectByPrimaryKey(id);
+		return mineInfo;
+	}
+
+	@Override
+	public void updateMineInfo(MineInfo mineInfo) {
+		mineInfoMapper.updateByPrimaryKeySelective(mineInfo);
 	}
 
 }

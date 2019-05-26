@@ -57,7 +57,7 @@
 <div class="col-sm-12">
 	<div class="page-header">
   		<h3>&nbsp;&nbsp;项目展示 
-  			<button type="button" id="addProject" class="btn btn-primary pull-right">增加项目</button>
+  			<button type="button" id="addProject" class="btn btn-primary pull-right">增加项目 <span class="glyphicon glyphicon-plus"></span></button>
   		</h3>
 	</div>
 </div>
@@ -75,7 +75,7 @@
 					项目名称<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-					<li><a href="">查看项目报告</a></li>
+					<li><a href="<c:url value='/mineInfo/queryOne'/>?op=detail&id=${mineInfo.id}">查看项目报告</a></li>
 					<li class="divider"></li>
 					<li><a  onclick="deleteProject('${mineInfo.id}')">删除此项目</a></li>
 					</ul>
@@ -95,13 +95,13 @@
 	<div class="col-sm-3">
 		<div class="panel panel-info">
 			<div class="panel-heading">技术特征</div>
-			<div class="panel-body"><a href="<c:url value='/mineInfo/queryOne' />?id='+${mineInfo.id}+'">点击开始录入</a></div>
+			<div class="panel-body"><a href="<c:url value='/mineInfo/queryOne' />?op=tech&id=${mineInfo.id}">点击开始录入/修改</a></div>
 		</div>
 	</div>
 	<div class="col-sm-3">
 		<div class="panel panel-info">
 			<div class="panel-heading">管理体系</div>
-			<div class="panel-body"><a href="javascript:void(0);" onclick="addManage('${mineInfo.id}')">点击开始录入</a></div>
+			<div class="panel-body"><a href="<c:url value='/mineInfo/queryOne' />?op=manager&id=${mineInfo.id}" >点击开始录入/修改</a></div>
 		</div>
 	</div>
 </div>

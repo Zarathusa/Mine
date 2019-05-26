@@ -39,4 +39,12 @@ public class MineInfoMapperTest {
 			System.out.println(mineInfo);
 		}
 	}
+	
+	@Test
+	public void test3(){
+		MineInfo mineInfo = new MineInfo();
+		mineInfo.setId(9);
+		mineInfo.setProjectEffect("2");
+		mineInfoMapper.updateByPrimaryKeySelective(mineInfo);
+	}
 }
