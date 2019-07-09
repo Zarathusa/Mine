@@ -12,6 +12,12 @@
 			window.location.href="${path}/mineInfo/showAll";
 		});
 	});
+	
+	function show_div(value){
+		var obj_div=document.getElementById(value);
+		obj_div.style.display=(obj_div.style.display=='none')?'block':'none';
+		}
+	
 </script>
 <div class="container-fluid">
 <div class="row">
@@ -46,15 +52,17 @@
 			
 			<div class="row">
 				<div class="page-header">
-					<h4>管理体系结构</h4>
+					<h4><a href="javascript:show_div('gltxjg')">管理体系结构   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
-				
+			
+			<div id="gltxjg" style="display:none;">
+			
 			<div class="row">
 				<div class="form-group">
 					<label for="organUpload">组织机构:</label> 
 					<input type="file" id="organUpload" name="organUpload">
-					<p class="help-block">请上传组织机构文件（word格式）</p>
+					<p class="help-block">请上传组织机构文件（pdf/word文件，若文件较大，请上传pdf格式文件）</p>
 				</div>
 			</div>
 			
@@ -62,6 +70,8 @@
 				<div class="form-group">
 					<label for="manageResp">管理职责:</label> 
 					<textarea rows="3" id="manageResp" name="manageResp" placeholder="请输入" class="form-control">${mineInfo.manageResp}</textarea>
+					<input type="file" id="manageRespUpload" name="manageRespUpload">
+					<p class="help-block">请上传管理职责文件（pdf/word文件，若文件较大，请上传pdf格式文件）</p>
 				</div>
 			</div>
 			
@@ -72,11 +82,15 @@
 				</div>
 			</div>
 			
+			</div>
+			
 			<div class="row">
 				<div class="page-header">
-					<h4>过程控制管理</h4>
+					<h4><a href="javascript:show_div('gckzgl')">过程控制管理   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="gckzgl" style="display:none">
 			
 			<div class="row">
 				<div class="form-group">
@@ -96,41 +110,45 @@
 				<div class="form-group">
 					<label for="workProceUpload">作业控制程序:</label> 
 					<input type="file" id="workProceUpload" name="workProceUpload"/>
-					<p class="help-block">请上传作业控制程序文件（word格式）</p>
+					<p class="help-block">请上传作业控制程序文件（pdf/word文件，若文件较大，请上传pdf格式文件）</p>
 				</div>
+			</div>
+			
 			</div>
 			
 			<div class="row">
 				<div class="page-header">
-					<h4>作业指导文件</h4>
+					<h4><a href="javascript:show_div('zyzdwj')">作业指导文件   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" id="zyzdwj" style="display:none">
 				<div class="form-group">
 					<input type="file" name="workFileUpload"/>
-					<p class="help-block">请上传作业指导文件（word格式）</p>
+					<p class="help-block">请上传作业指导文件（pdf/word文件，若文件较大，请上传pdf格式文件）</p>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="page-header">
-					<h4>操作规程</h4>
+					<h4><a href="javascript:show_div('czgc')">操作规程   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" id="czgc" style="display:none">
 				<div class="form-group">
 					<input type="file" name="operProceUpload"/>
-					<p class="help-block">请上传操作规程文件（word格式）</p>
+					<p class="help-block">请上传操作规程文件（pdf/word文件，若文件较大，请上传pdf格式文件）</p>
 				</div>
 			</div>
 			
 			<div class="row">
 				<div class="page-header">
-					<h4>技术管理效果评价标准</h4>
+					<h4><a href="javascript:show_div('jsglxgpjbz')">技术管理效果评价标准    <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="jsglxgpjbz" style="display:none">
 			
 			<div class="row">
 				<div class="form-group">
@@ -151,6 +169,8 @@
 					<label for="workAmount">工程量:</label> 
 					<textarea rows="3" id="workAmount" name="workAmount" placeholder="请输入" class="form-control">${mineInfo.workAmount}</textarea>
 				</div>
+			</div>
+			
 			</div>
 			
 			<div class="pull-right">

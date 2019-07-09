@@ -51,13 +51,20 @@
 		});
 	}
 	
+	/* 上传项目报告 */
+	function uploadReport(id){
+		$("#uploadReportModal").modal("show");
+		$("#projectId").prop("value",id);
+	}
 	
 </script>
 <div class="row">
 <div class="col-sm-12">
 	<div class="page-header">
   		<h3>&nbsp;&nbsp;项目展示 
-  			<button type="button" id="addProject" class="btn btn-primary pull-right">增加项目 <span class="glyphicon glyphicon-plus"></span></button>
+  			<c:if test="${sessionScope.user.status==1}">
+  				<button type="button" id="addProject" class="btn btn-primary pull-right">增加项目 <span class="glyphicon glyphicon-plus"></span></button>
+  			</c:if>
   		</h3>
 	</div>
 </div>
@@ -75,14 +82,24 @@
 					项目名称<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-					<li><a href="<c:url value='/mineInfo/queryOne'/>?op=detail&id=${mineInfo.id}">查看项目报告</a></li>
+					<li>
+						<c:if test="${sessionScope.user.status==1}">
+							<a onclick="uploadReport('${mineInfo.id}')">上传项目报告</a>	
+						</c:if>
+					</li>
+					<li><a href="<c:url value='/mineInfo/queryOne'/>?op=report&id=${mineInfo.id}">查看项目报告</a></li>
 					<li class="divider"></li>
-					<li><a  onclick="deleteProject('${mineInfo.id}')">删除此项目</a></li>
+					<li>
+						<c:if test="${sessionScope.user.status==1}">
+							<a onclick="deleteProject('${mineInfo.id}')">删除此项目</a>
+						</c:if>
+						
+					</li>
 					</ul>
 				</div>
 			</div>
 			<div class="panel-body">
-				${mineInfo.projectName}
+				<a href="<c:url value='/mineInfo/queryOne'/>?op=detail&id=${mineInfo.id}">${mineInfo.projectName}</a>
 			</div>
 		</div>
 	</div>
@@ -95,13 +112,27 @@
 	<div class="col-sm-3">
 		<div class="panel panel-info">
 			<div class="panel-heading">技术特征</div>
-			<div class="panel-body"><a href="<c:url value='/mineInfo/queryOne' />?op=tech&id=${mineInfo.id}">点击开始录入/修改</a></div>
+			<div class="panel-body">
+				<c:if test="${sessionScope.user.status==1}">
+					<a href="<c:url value='/mineInfo/queryOne' />?op=tech&id=${mineInfo.id}">点击开始录入/修改</a>
+				</c:if>
+				<c:if test="${sessionScope.user.status!=1}">
+					普通用户不可录入/修改
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-3">
 		<div class="panel panel-info">
 			<div class="panel-heading">管理体系</div>
-			<div class="panel-body"><a href="<c:url value='/mineInfo/queryOne' />?op=manager&id=${mineInfo.id}" >点击开始录入/修改</a></div>
+			<div class="panel-body">
+				<c:if test="${sessionScope.user.status==1}">
+					<a href="<c:url value='/mineInfo/queryOne' />?op=manager&id=${mineInfo.id}" >点击开始录入/修改</a>
+				</c:if>
+				<c:if test="${sessionScope.user.status!=1}">
+					普通用户不可录入/修改
+				</c:if>
+			</div>
 		</div>
 	</div>
 </div>
@@ -152,7 +183,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<!--模态框标题-->
-			<form action="<c:url value='/mineInfo/addProject'/>" method="post" class="form-horizontal" >
+			<form id="addProjectForm" action="<c:url value='/mineInfo/addProject'/>" method="post" class="form-horizontal" >
 			<div class="modal-header">
 				<!--
 用来关闭模态框的属性:data-dismiss="modal"
@@ -182,9 +213,8 @@
 			</div>
 			<!--模态页脚-->
 			<div class="modal-footer">
-				<button type="submit" name="submit" class="btn btn-primary">保存</button>
-				<button type="button" class="btn btn-danger" data-dismiss="modal">取消
-				</button>
+				<button type="submit" class="btn btn-primary">保存</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
 			</div>
 			</form>
 		</div>
@@ -213,6 +243,39 @@
 		</div>
 	</div>
 
+
+<!-- 上传项目报告框 -->
+	<div class="modal fade" id="uploadReportModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!--模态框标题-->
+				<form action="<c:url value='/mineInfo/updateReport'/>" method="post" enctype="multipart/form-data" class="form-horizontal" >
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span>&times; </span>
+					</button>
+					<h4 class="modal-title">上传项目报告</h4>
+				</div>
+				<!--模态框内容体-->
+			<div class="modal-body">
+					<input id="projectId" name="id" style="display:none" value=""/>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">项目报告</label>
+						<div class="col-sm-10">
+							<input type="file" name="reportUpload">
+							<p class="help-block">请上传项目报告文件（若文件较大，请上传pdf格式文件）</p>
+						</div>
+					</div>
+			</div>
+				<!--模态页脚-->
+				<div class="modal-footer">
+					<button type="submit" name="submit" class="btn btn-primary">保存</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">取消</button>
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
 
 
 </body>

@@ -61,7 +61,7 @@ public class XDocService {
 	/**
 	 * 默认账号口令
 	 */
-	public static String DEFAULT_KEY = "";
+	public static String DEFAULT_KEY = "jrdxkrmrvrfl5jteqhr5cvc7im";
 	private String url;
 	private String key;
 	/**

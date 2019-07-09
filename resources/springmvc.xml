@@ -40,4 +40,11 @@
 		<property name="maxInMemorySize" value="104857600"/>
 	</bean>
 	
+	<!-- 登录拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/mineInfo/**"/>
+			<bean id="loginFilter" class="com.xpf.filter.LoginFilter"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

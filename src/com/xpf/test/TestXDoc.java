@@ -18,4 +18,11 @@ public class TestXDoc {
 		    e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void test2(){
+		String s="1111.pdf";
+		boolean b = s.endsWith(".pdf");
+		System.out.println(b);
+	}
 }

@@ -11,12 +11,15 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xpf.dao.MineInfoMapper;
+import com.xpf.dao.UserMapper;
 import com.xpf.entity.MineInfo;
+import com.xpf.entity.User;
 
 public class MineInfoMapperTest {
 
 	private ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 	private MineInfoMapper mineInfoMapper = (MineInfoMapper)applicationContext.getBean("mineInfoMapper");
+	private UserMapper userMapper = (UserMapper)applicationContext.getBean("userMapper");
 	
 	@Test
 	public void test1(){
@@ -46,5 +49,20 @@ public class MineInfoMapperTest {
 		mineInfo.setId(9);
 		mineInfo.setProjectEffect("2");
 		mineInfoMapper.updateByPrimaryKeySelective(mineInfo);
+	}
+	
+	@Test
+	public void testLogin(){
+		Example example = new Example(User.class);
+		Criteria criteria = example.createCriteria();
+		criteria.andEqualTo("username", "wangqifei");
+		criteria.andEqualTo("password", "abc123@@@");
+		User user = userMapper.selectOneByExample(example);
+		System.out.println(user);
+	}
+	
+	@Test
+	public void update(){
+		
 	}
 }

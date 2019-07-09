@@ -55,6 +55,8 @@ public class MineInfo {
 	@Column
 	private String manageResp;
 	@Column
+	private String manageRespFile;
+	@Column
 	private String resourceSupport;
 	@Column
 	private String workLink;
@@ -72,10 +74,11 @@ public class MineInfo {
 	private String timeStandard;
 	@Column
 	private String workAmount;
+	@Column
+	private String projectReport;
 	
 	public MineInfo() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public MineInfo(Integer id, String projectName, String mineName,
@@ -85,10 +88,10 @@ public class MineInfo {
 			String techCond, String implPeriod, String implArea,
 			String techGrade, String mineImpact, String techDesc,
 			String techFeature, String quanEffect, String organ,
-			String manageResp, String resourceSupport, String workLink,
-			String techFile, String workProce, String workFile,
-			String operProce, String techStandard, String timeStandard,
-			String workAmount) {
+			String manageResp, String manageRespFile, String resourceSupport,
+			String workLink, String techFile, String workProce,
+			String workFile, String operProce, String techStandard,
+			String timeStandard, String workAmount, String projectReport) {
 		super();
 		this.id = id;
 		this.projectName = projectName;
@@ -112,6 +115,7 @@ public class MineInfo {
 		this.quanEffect = quanEffect;
 		this.organ = organ;
 		this.manageResp = manageResp;
+		this.manageRespFile = manageRespFile;
 		this.resourceSupport = resourceSupport;
 		this.workLink = workLink;
 		this.techFile = techFile;
@@ -121,6 +125,7 @@ public class MineInfo {
 		this.techStandard = techStandard;
 		this.timeStandard = timeStandard;
 		this.workAmount = workAmount;
+		this.projectReport = projectReport;
 	}
 
 	public Integer getId() {
@@ -299,6 +304,14 @@ public class MineInfo {
 		this.manageResp = manageResp;
 	}
 
+	public String getManageRespFile() {
+		return manageRespFile;
+	}
+
+	public void setManageRespFile(String manageRespFile) {
+		this.manageRespFile = manageRespFile;
+	}
+
 	public String getResourceSupport() {
 		return resourceSupport;
 	}
@@ -371,6 +384,14 @@ public class MineInfo {
 		this.workAmount = workAmount;
 	}
 
+	public String getProjectReport() {
+		return projectReport;
+	}
+
+	public void setProjectReport(String projectReport) {
+		this.projectReport = projectReport;
+	}
+
 	@Override
 	public String toString() {
 		return "MineInfo [id=" + id + ", projectName=" + projectName
@@ -384,13 +405,17 @@ public class MineInfo {
 				+ ", mineImpact=" + mineImpact + ", techDesc=" + techDesc
 				+ ", techFeature=" + techFeature + ", quanEffect=" + quanEffect
 				+ ", organ=" + organ + ", manageResp=" + manageResp
-				+ ", resourceSupport=" + resourceSupport + ", workLink="
-				+ workLink + ", techFile=" + techFile + ", workProce="
-				+ workProce + ", workFile=" + workFile + ", operProce="
-				+ operProce + ", techStandard=" + techStandard
-				+ ", timeStandard=" + timeStandard + ", workAmount="
-				+ workAmount + "]";
+				+ ", manageRespFile=" + manageRespFile + ", resourceSupport="
+				+ resourceSupport + ", workLink=" + workLink + ", techFile="
+				+ techFile + ", workProce=" + workProce + ", workFile="
+				+ workFile + ", operProce=" + operProce + ", techStandard="
+				+ techStandard + ", timeStandard=" + timeStandard
+				+ ", workAmount=" + workAmount + ", projectReport="
+				+ projectReport + "]";
 	}
+
+	
+
 	
 	
 	

@@ -18,30 +18,37 @@
 		
 		$("#organ").media({
 			width: '100%',
-			height: '450px',
+			height: '600px',
 			autoplay: true,
         	src:"${path}${mineInfo.organ}.pdf",
 		});
 		
 		$("#workProce").media({
 			width: '100%',
-			height: '450px',
+			height: '600px',
 			autoplay: true,
         	src:"${path}${mineInfo.workProce}.pdf",
 		});
 		
 		$("#workFile").media({
 			width: '100%',
-			height: '450px',
+			height: '600px',
 			autoplay: true,
         	src:"${path}${mineInfo.workFile}.pdf",
 		});
 		
 		$("#operProce").media({
 			width: '100%',
-			height: '450px',
+			height: '600px',
 			autoplay: true,
         	src:"${path}${mineInfo.operProce}.pdf",
+		});
+		
+		$("#manageRespFile").media({
+			width: '100%',
+			height: '600px',
+			autoplay: true,
+        	src:"${path}${mineInfo.manageRespFile}.pdf",
 		});
 	});
 	
@@ -56,12 +63,14 @@
 		    clearTimeout(scrolldelay);
 		  }
 	}
+	
+	
 </script>
 <div class="container-fluid">
 <div class="row">
 <div class="col-sm-12">
 	<div class="page-header">
-  		<h3>&nbsp;&nbsp;项目报告
+  		<h3>&nbsp;&nbsp;项目详情
   			<button type="button" id="back" class="btn btn-primary pull-right">返回首页 <span class="glyphicon glyphicon-share-alt"></span></button>
   		</h3>
 	</div>
@@ -317,7 +326,12 @@
 	   				<h3 class="panel-title">组织机构</h3>
 	  			</div>
 	  			<div class="panel-body">
-	  				<div id="organ"  style="height:450px"></div>
+	  				<c:if test="${mineInfo.organ!=null}">
+	  					<div id="organ"  style="height:450px"></div>
+	  				</c:if>
+	  				<c:if test="${mineInfo.organ==null}">
+	  					请上传pdf/word文件
+	  				</c:if>
 	  			</div>
 			</div>
 		</div>
@@ -329,7 +343,14 @@
 	  			<div class="panel-heading">
 	   				<h3 class="panel-title">管理职责</h3>
 	  			</div>
-	  			<div class="panel-body"><p>${mineInfo.manageResp}</p></div>
+	  			<div class="panel-body"><p>${mineInfo.manageResp}</p>
+	  				<c:if test="${mineInfo.manageRespFile!=null}">
+	  					<div id="manageRespFile"  style="height:450px"></div>
+	  				</c:if>
+	  				<c:if test="${mineInfo.manageRespFile==null}">
+	  					请上传pdf/word文件
+	  				</c:if>
+	  			</div>
 			</div>
 		</div>
 	</div>
@@ -380,7 +401,12 @@
 	   				<h3 class="panel-title">作业控制程序</h3>
 	  			</div>
 	  			<div class="panel-body">
-					<div id="workProce"></div>	
+	  				<c:if test="${mineInfo.workProce!=null}">
+	  					<div id="workProce"></div>
+	  				</c:if>
+	  				<c:if test="${mineInfo.workProce==null}">
+	  					请上传pdf/word文件
+	  				</c:if>
 				</div>
 			</div>
 		</div>
@@ -393,7 +419,12 @@
 	   				<h3 class="panel-title">作业指导文件</h3>
 	  			</div>
 	  			<div class="panel-body">
-	  				<div id="workFile"></div>
+	  				<c:if test="${mineInfo.workFile!=null}">
+	  					<div id="workFile"></div>
+	  				</c:if>
+	  				<c:if test="${mineInfo.workFile==null}">
+	  					请上传pdf/word文件
+	  				</c:if>
 	  			</div>
 			</div>
 		</div>
@@ -406,7 +437,12 @@
 	   				<h3 class="panel-title">操作规程</h3>
 	  			</div>
 	  			<div class="panel-body">
-	  				<div id="operProce"></div>
+	  				<c:if test="${mineInfo.operProce!=null}">
+	  					<div id="operProce"></div>
+	  				</c:if>
+	  				<c:if test="${mineInfo.operProce==null}">
+	  					请上传pdf/word文件
+	  				</c:if>
 	  			</div>
 			</div>
 		</div>

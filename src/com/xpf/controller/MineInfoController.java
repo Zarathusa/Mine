@@ -57,6 +57,8 @@ public class MineInfoController {
 			view.setViewName("main/managerInsert");
 		}else if("detail".equals(op)){
 			view.setViewName("main/detail");
+		}else if("report".equals(op)){
+			view.setViewName("main/report");
 		}
 		return view;
 	}
@@ -70,7 +72,8 @@ public class MineInfoController {
 	@RequestMapping("updateManager")
 	public String updateManager(MineInfo mineInfo,@RequestParam("organUpload")MultipartFile organUpload,
 			@RequestParam("workProceUpload")MultipartFile workProceUpload,@RequestParam("workFileUpload")MultipartFile workFileUpload,
-			@RequestParam("operProceUpload")MultipartFile operProceUpload,HttpSession session
+			@RequestParam("operProceUpload")MultipartFile operProceUpload,
+			@RequestParam("manageRespUpload")MultipartFile manageRespUpload,HttpSession session
 			){
 		if(!organUpload.isEmpty()){
 			String organ = upload("organUpload",organUpload,session);
@@ -88,9 +91,27 @@ public class MineInfoController {
 			String operProce = upload("operProceUpload",operProceUpload,session);
 			mineInfo.setOperProce(operProce);
 		}
+		if(!manageRespUpload.isEmpty()){
+			String manageRespFile = upload("manageRespUpload",manageRespUpload,session);
+			mineInfo.setManageRespFile(manageRespFile);
+		}
 		mineInfoService.updateMineInfo(mineInfo);
 		return "redirect:/mineInfo/showAll";
 	}
+	
+	@RequestMapping("updateReport")
+	public String updateReport(Integer id,@RequestParam("reportUpload")MultipartFile reportUpload,HttpSession session){
+		if(!reportUpload.isEmpty()){
+			String report = upload("reportUpload", reportUpload, session);
+			MineInfo mineInfo = new MineInfo();
+			mineInfo.setId(id);
+			mineInfo.setProjectReport(report);
+			mineInfoService.updateMineInfo(mineInfo);
+		}
+		return "redirect:/mineInfo/showAll";
+	}
+	
+	
 	
 	/**
 	 * 
@@ -110,17 +131,29 @@ public class MineInfoController {
 			file.mkdir();
 		}
 		//给文件名加上时间戳，使文件名唯一，不会被覆盖
-		String newName=new Date().getTime()+"-"+filename;
-		//文件上传
-		try {
-			upload.transferTo(new File(realPath,newName));
-			//再存一份pdf
-			XDocService service = new XDocService();
-			service.to(realPath+"/"+newName, new File(realPath+"/"+newName+".pdf"));
-		} catch (Exception e) {
-			e.printStackTrace();
+		//linux中文文件名上传乱码（用英文代替）
+		String newName=new Date().getTime()+"-"+dir;
+		if(filename.endsWith(".pdf")){
+			try {
+				upload.transferTo(new File(realPath,newName+".pdf"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else if(filename.endsWith(".docx")||filename.endsWith(".doc")){
+			//文件上传
+			try {
+				upload.transferTo(new File(realPath,newName+".docx"));
+				//再存一份pdf
+				XDocService service = new XDocService();
+				service.to(realPath+"/"+newName+".docx", new File(realPath+"/"+newName+".pdf"));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		String url="/"+dir+"/"+newName;
+		String url=null;
+		if(filename.endsWith(".pdf")||filename.endsWith(".docx")||filename.endsWith(".doc")){
+			url="/"+dir+"/"+newName;
+		}
 		return url;
 	}
 }

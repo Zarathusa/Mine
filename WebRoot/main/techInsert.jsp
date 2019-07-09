@@ -12,6 +12,12 @@
 			window.location.href="${path}/mineInfo/showAll";
 		});
 	});
+	
+	function show_div(value){
+		var obj_div=document.getElementById(value);
+		obj_div.style.display=(obj_div.style.display=='none')?'block':'none';
+		}
+	
 </script>
 <div class="container-fluid">
 <div class="row">
@@ -46,9 +52,11 @@
 			
 			<div class="row">
 				<div class="page-header">
-					<h4>适用条件</h4>
+					<h4><a href="javascript:show_div('sytj')">适用条件   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="sytj" style="display:none">
 				
 			<div class="row">
 				<div class="form-group">
@@ -71,11 +79,15 @@
 				</div>
 			</div>
 			
+			</div>
+			
 			<div class="row">
 				<div class="page-header">
-					<h4>技术基础</h4>
+					<h4><a href="javascript:show_div('jsjc')">技术基础   <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="jsjc" style="display:none">
 			
 			<div class="row">
 				<div class="form-group">
@@ -119,11 +131,15 @@
 				</div>
 			</div>
 			
+			</div>
+			
 			<div class="row">
 				<div class="page-header">
-					<h4>工艺特征</h4>
+					<h4><a href="javascript:show_div('gytz')">工艺特征  <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="gytz" style="display:none">
 			
 			<div class="row">
 				<div class="form-group">
@@ -160,11 +176,15 @@
 				</div>
 			</div>
 			
+			</div>
+			
 			<div class="row">
 				<div class="page-header">
-					<h4>技术描述方法及技术特征指标</h4>
+					<h4><a href="javascript:show_div('jsmsff')">技术描述方法及技术特征指标  <span class="glyphicon glyphicon-th-list"></span></a></h4>
 				</div>
 			</div>
+			
+			<div id="jsmsff" style="display:none;">
 			
 			<div class="row">
 				<div class="form-group">
@@ -185,6 +205,8 @@
 					<label for="quanEffect">达到的量化效果:</label> 
 					<textarea rows="3" id="quanEffect" name="quanEffect" placeholder="请输入" class="form-control">${mineInfo.quanEffect}</textarea>
 				</div>
+			</div>
+			
 			</div>
 			
 			<div class="pull-right">
